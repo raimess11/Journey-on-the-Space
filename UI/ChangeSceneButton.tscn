@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/new_theme.tres" type="Theme" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends Button
+
+
+export(String, FILE) var next_scene: = \"\"
+
+func _on_Button_button_up():
+	get_tree().change_scene(next_scene)
+
+func _get_configuration_warning() -> String:
+	return \"next_scene can't be empty\" if next_scene == \"\" else \"\"
+
+"
+
+[node name="Button" type="Button"]
+margin_right = 40.0
+margin_bottom = 20.0
+theme = ExtResource( 1 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="." to="." method="_on_Button_button_up"]
